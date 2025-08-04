@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+
+// :root {
+//   @include mat.button-overrides((
+//     container-color: orange,
+//   ));
+// }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+// :host button {
+//   margin-left: 10px;
+// }
