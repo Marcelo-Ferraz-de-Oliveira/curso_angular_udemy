@@ -26,6 +26,7 @@ import { DatePipe } from '@angular/common';
 })
 export class Consulta implements OnInit {
 
+  nomeBusca: string = '';
   listaClientes: Cliente[] = [];
   colunasTable: string[] = ['id', 'nome', 'cpf', 'dataNascimento', 'email']
 
@@ -35,6 +36,9 @@ export class Consulta implements OnInit {
       this.listaClientes = this.service.pesquisarClientes('');
   }
 
-
+  pesquisar() {
+    // console.log('Nome da busca:', this.nomeBusca);
+    this.listaClientes = this.service.pesquisarClientes(this.nomeBusca);
+  }
 
 }

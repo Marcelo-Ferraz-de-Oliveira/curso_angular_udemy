@@ -12,13 +12,13 @@
             <div fxLayout="column" fxFlex="950px">
               <mat-form-field class="full-width">
                 <mat-label>Nome:</mat-label>
-                <input matInput placeholder="ex: josé">
+                <input name="busca" [(ngModel)]="nomeBusca" matInput placeholder="ex: josé">
               </mat-form-field>
             </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button matButton="filled" color="primary">
+          <button matButton="filled" color="primary" (click)="pesquisar()">
             <mat-icon fontIcon="search"></mat-icon>
             Pesquisar
           </button>
