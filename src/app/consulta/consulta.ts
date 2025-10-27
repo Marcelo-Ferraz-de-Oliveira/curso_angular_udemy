@@ -5,12 +5,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MatAnchor, MatButtonModule } from "@angular/material/button";
+import { MatButtonModule } from "@angular/material/button";
 import { ClienteService } from '../services/cliente.service';
 import { Cliente } from '../cadastro/cliente';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-consulta',
   imports: [
+    DatePipe,
     FlexLayoutModule,
     MatButtonModule,
     MatCardModule,
@@ -18,7 +20,6 @@ import { Cliente } from '../cadastro/cliente';
     MatInputModule,
     FormsModule,
     MatTableModule,
-    MatAnchor
 ],
   templateUrl: './consulta.html',
   styleUrl: './consulta.scss'
@@ -26,6 +27,7 @@ import { Cliente } from '../cadastro/cliente';
 export class Consulta implements OnInit {
 
   listaClientes: Cliente[] = [];
+  colunasTable: string[] = ['id', 'nome', 'cpf', 'dataNascimento', 'email']
 
   private service = inject(ClienteService);
 
