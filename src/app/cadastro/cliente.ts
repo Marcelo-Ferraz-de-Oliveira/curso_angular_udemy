@@ -9,7 +9,7 @@ export class Cliente {
 
   static newCliente() {
     const cliente = new Cliente();
-    cliente.id = uuidv4();
+    cliente.id = uuidv4(); // Generate a new UUID each time
     return cliente;
   }
 }
