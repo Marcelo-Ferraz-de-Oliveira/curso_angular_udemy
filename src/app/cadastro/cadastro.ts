@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import {  MatButtonModule } from '@angular/material/button';
 import { Cliente } from './cliente';
-import { ClienteService } from '../services/cliente';
+import { ClienteService } from '../services/cliente.service';
 
 @Component({
   selector: 'app-cadastro',
