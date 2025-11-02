@@ -26,7 +26,8 @@
             <div fxLayout="column" fxFlex="400px">
               <mat-form-field class="full-width">
                 <mat-label>CPF: *</mat-label>
-                <input [(ngModel)]="cliente.cpf" name="cpf" matInput type="text" placeholder="Digite seu CPF">
+                <input [(ngModel)]="cliente.cpf" name="cpf" matInput type="text" placeholder="Digite seu CPF"
+                  mask="000.000.000-00">
               </mat-form-field>
             </div>
           </div>
@@ -34,26 +35,55 @@
             <div fxLayout="column" fxFlex="400px">
               <mat-form-field class="full-width">
                 <mat-label>Data de Nascimento: *</mat-label>
-                <input [(ngModel)]="cliente.dataNascimento" name="dataNascimento" matInput type="date" placeholder="Digite sua data de nascimento">
+                <input [(ngModel)]="cliente.dataNascimento" name="dataNascimento" matInput
+                  placeholder="Digite sua data de nascimento" mask="00/00/0000">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="400px">
+              <mat-form-field class="full-width">
+                <mat-label>Estado: *</mat-label>
+                <mat-select [(value)]="cliente.estado" name="estado" (selectionChange)="carregarCidades()">
+                  <mat-option value="">-- Selecione -- </mat-option>
+                  @for(estado of estados; track estado.sigla) {
+                  <mat-option [value]="estado.sigla">
+                    {{ estado.nome }}
+                  </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <mat-label>Cidade:</mat-label>
+                <mat-select [(value)]="cliente.cidade" name="cidade" [disabled]="!cliente.estado">
+                  <mat-option [value]="null">-- Selecione -- </mat-option>
+                  @for(cidade of cidades; track cidade.codigo_ibge) {
+                  <mat-option [value]="cidade.nome">
+                    {{ cidade.nome }}
+                  </mat-option>
+                  }
+                </mat-select>
               </mat-form-field>
             </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
           <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
-            <!-- <div fxLayout="column" class="full-width"> -->
-              <button mat-flat-button color="primary" type="submit">
-                <mat-icon fontIcon="save"></mat-icon>
-                Salvar
-              </button>
-              <button mat-raised-button color="warn">
-                <mat-icon fontIcon="refresh"></mat-icon>
-                Atualizar
-              </button>
-              <button mat-raised-button color="accent">
-                <mat-icon fontIcon="backspace"></mat-icon>
-                Limpar
-              </button>
+            @if(!atualizando) {
+            <button mat-flat-button color="primary" type="submit">
+              <mat-icon fontIcon="save"></mat-icon>
+              Salvar
+            </button>
+            } @else {
+            <button mat-raised-button color="warn">
+              <mat-icon fontIcon="refresh"></mat-icon>
+              Atualizar
+            </button>
+            }
+            <button mat-raised-button color="accent">
+              <mat-icon fontIcon="backspace"></mat-icon>
+              Limpar
+            </button>
             <!-- </div> -->
           </div>
         </mat-card-actions>

@@ -1,4 +1,5 @@
 import { UUIDTypes, v4 as uuidv4 } from 'uuid';
+import { BrasilapiCidade, BrasilapiEstado } from './brasilapi.model';
 
 export class Cliente {
   id?: UUIDTypes;
@@ -6,6 +7,8 @@ export class Cliente {
   email?: string;
   cpf?: string;
   dataNascimento?: Date;
+  estado?: string;
+  cidade?: string;
 
   static newCliente() {
     const cliente = new Cliente();

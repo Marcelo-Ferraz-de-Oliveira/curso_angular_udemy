@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cliente } from '../cadastro/cliente';
+import { Cliente } from '../models/cliente.model';
 
 
 @Injectable({
@@ -13,6 +13,22 @@ export class ClienteService {
     const storage = this.obterStorage();
     storage.push(cliente);
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
+  }
+
+  atualizar(cliente: Cliente): void {
+    const storage = this.obterStorage();
+    storage.forEach(c => {
+      if (c.id === cliente.id) {
+        Object.assign(c, cliente);
+      }
+    });
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
+  }
+
+  deletar(cliente: Cliente): void {
+    let storage = this.obterStorage();
+    const novaLista = storage.filter(c => c.id !== cliente.id);
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(novaLista));
   }
 
   obterClientePorId(id: string): Cliente | undefined {

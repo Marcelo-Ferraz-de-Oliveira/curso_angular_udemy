@@ -45,7 +45,7 @@
           </ng-container>
           <ng-container matColumnDef="cpf">
             <th mat-header-cell *matHeaderCellDef>CPF</th>
-            <td mat-cell *matCellDef="let cliente">{{ cliente.cpf }}</td>
+            <td mat-cell *matCellDef="let cliente">{{ cliente.cpf | mask:'000.000.000-00' }}</td>
           </ng-container>
           <ng-container matColumnDef="dataNascimento">
             <th mat-header-cell *matHeaderCellDef>Data de Nascimento</th>
@@ -55,12 +55,32 @@
             <th mat-header-cell *matHeaderCellDef>Email</th>
             <td mat-cell *matCellDef="let cliente">{{ cliente.email }}</td>
           </ng-container>
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let cliente">{{ cliente.estado || '-' }}</td>
+          </ng-container>
+          <ng-container matColumnDef="cidade">
+            <th mat-header-cell *matHeaderCellDef>Cidade</th>
+            <td mat-cell *matCellDef="let cliente">{{ cliente.cidade || '-' }}</td>
+          </ng-container>
           <ng-container matColumnDef="acoes">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let cliente">
               <button matButton color="warn" (click)="preparaEditar(cliente.id)">
                 <mat-icon>edit</mat-icon>
+                Editar
               </button>
+              @if(deletando !== cliente.id) {
+                <button matButton color="warn" (click)="preparaDeletar(cliente.id)">
+                  <mat-icon>delete</mat-icon>
+                  Deletar
+                </button>
+              } @else {
+                <button matButton color="warn" (click)="deletar(cliente)">
+                  <mat-icon>question_mark</mat-icon>
+                  Confirma
+                </button>
+              }
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="colunasTable"></tr>
